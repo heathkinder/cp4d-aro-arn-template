@@ -1,62 +1,62 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "clusterName": {
-          "value": "specify unique cluster name here"
-        },
-        "adminUsername": {
-          "value": "core"
-        },
-        "apiKey": {
-            "value": "specify cpd registry apikey here"
-        },
-        "sshPublicKey": {
-            "value": "specify public ssh key here"
-        },
-        "pullSecret": {
-            "reference": {
-              "keyVault": {
-                  "id": "/subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/Microsoft.KeyVault/vaults/<vault name>"
-              },
-              "secretName": "pullsecret"
-          }
-        },
-        "aadClientId": {
-            "value": "specify azure appId or client id here"
-        },
-        "aadClientSecret": {
-            "value": "specify azure client secret or password here"
-        },
-        "workerInstanceCount": {
-          "value": "specify worker count <Type: Integer> (Allowed Values: 3/4/5/6/7/8/9/10)"
-        },
-        "storageOption": {
-          "value": "specify nfs or ocs"
-        },
-        "cloudPakLicenseAgreement": {
-          "value": "accept"
-        },
-        "installWatsonStudioLocal": {
-          "value": "no"
-        },
-        "installWatsonMachineLearning": {
-          "value": "no"
-        },
-        "installWatsonKnowledgeCatalog": {
-          "value": "no"
-        },
-        "installDataVirtualization": {
-          "value": "no"
-        },
-        "installCognosDashboard": {
-          "value": "no"
-        },
-        "installWatsonOpenscale": {
-          "value": "no"
-        },
-        "installApacheSpark": {
-          "value": "no"
-        }
-    }
-  }
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"clusterName": {
+			"value": "chartertech-cluster"
+		},
+		"adminUsername": {
+			"value": "core"
+		},
+		"apiKey": {
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE2NTU4Nzc0MzYsImp0aSI6Ijg2YTc1NGI3OThjNTQ5YWFhOWUyM2Q2M2ZlNzM4ZTQxIn0.PUVoZH2pIE0M67Qm33e7wGFJ8UBTr9jfAeo3gVzs6gM"
+		},
+		"sshPublicKey": {
+			"value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9fU17UOpxJcKUMgkaGvtXDGW59zJcKIz8g72POUA1UvO72zb9LBQWW3DUWLOEy2CSSioMX5EjKAusm5PKafbZnDcWbIsXzEVi5b4VSamW2awTe6wqGsCX3B4lS8FIReN2bNTajD30wy8paWK9PzgA5G5kgwvBHc2JdK7pM0NTNnW887mT5BGLJ+0UHIDWOW9tQ9+hmNKahbt4FBnriYe/86PTEGjK4O+J8Z8BmbKvWKLZRZp+ybUqWFvn/MIpKBUCJ1ByHjBAn8z4DCmIUSgyOBPQRdUfHLrI0u3WjolHm7Ot45JTC7OXEC1T5NhiAP+aNZ+eeZZFJYnU4i4hmEzSJqurv3Jii5RMDbuXQa2qOasV4SFktx32GDz3Eo0VeDIxbzvz1WRNdvANUL5XsLa7ha+W6FyHkBseP64jROjlw5F6lvoaFmynes9maXcwQiLA3Rspwbtt8cSTvm9KjOhiIsbg/l1IX8Hd40/MCkyOOlmxW9GRNY4igWW7XLS7cDc= marwan@Marwans-MacBook-Pro.local"
+		},
+		"aadClientId": {
+			"value": "36d25077-4feb-489c-82fd-8976655468a5"
+		},
+		"aadClientSecret": {
+			"value": "EwHXEKhhNkSH5rAi.0vlz6BPjQ~I2EIB5Z"
+		},
+		"workerInstanceCount": {
+			"value": 3
+		},
+		"pullSecret": {
+			"reference": {
+				"keyVault": {
+					"id": "/subscriptions/f9700497-11d3-4005-8b1d-3bf45a667424/resourceGroups/chartertech/providers/Microsoft.KeyVault/vaults/openshift-credentials"
+				},
+				"secretName": "pullSecret"
+			}
+		},
+		"storageOption": {
+			"value": "nfs"
+		},
+		"cloudPakLicenseAgreement": {
+			"value": "accept"
+		},
+		"installWatsonStudioLocal": {
+			"value": "no"
+		},
+		"installWatsonMachineLearning": {
+			"value": "no"
+		},
+		"installWatsonKnowledgeCatalog": {
+			"value": "no"
+		},
+		"installDataVirtualization": {
+			"value": "no"
+		},
+		"installCognosDashboard": {
+			"value": "no"
+		},
+		"installWatsonOpenscale": {
+			"value": "no"
+		},
+		"installApacheSpark": {
+			"value": "no"
+		}
+	}
+}

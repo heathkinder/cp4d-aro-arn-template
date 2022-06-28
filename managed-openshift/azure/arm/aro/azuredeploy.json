@@ -7,7 +7,7 @@
 			"metadata": {
 				"description": "The base URL where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
 			},
-			"defaultValue": "https://raw.githubusercontent.com/IBM/cp4d-deployment/master/managed-openshift/azure/arm/aro/azuredeploy.json"
+			"defaultValue": "https://mattar555.github.io/cp4d-aro-arn-template/managed-openshift/azure/arm/aro/azuredeploy.json"
 		},
 		"_artifactsLocationSasToken": {
 			"type": "securestring",
@@ -35,6 +35,13 @@
 			"defaultValue": "",
 			"metadata": {
 				"description": "Azure AD Client Secret"
+			}
+		},
+		"resourceProviderId": {
+			"type": "string",
+			"defaultValue": "",
+			"metddata": {
+				"description": "Resource Provider ID"
 			}
 		},
 		"adminUsername": {
@@ -386,7 +393,7 @@
 		"deployOpenshiftExt": "[concat('Microsoft.Compute/virtualMachines/', variables('bastionHostname'), '/extensions/deployOpenshift')]",
 		"podCidr": "10.128.0.0/14",
 		"serviceCidr": "172.30.0.0/16",
-		"rpObjectId": "464114b9-46ee-4c7c-a068-35ab76d50606",
+		"rpObjectId": "parameters('resourceProviderId')",
 		"publicIpId": {
 			"id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('bastionPublicIpDnsLabel'))]"
 		},
