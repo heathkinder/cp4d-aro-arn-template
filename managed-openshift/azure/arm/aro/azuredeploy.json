@@ -393,7 +393,7 @@
 		"deployOpenshiftExt": "[concat('Microsoft.Compute/virtualMachines/', variables('bastionHostname'), '/extensions/deployOpenshift')]",
 		"podCidr": "10.128.0.0/14",
 		"serviceCidr": "172.30.0.0/16",
-		"rpObjectId": "guid(parameters('resourceProviderId'))",
+		"rpObjectId": "[parameters('resourceProviderId')]",
 		"publicIpId": {
 			"id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('bastionPublicIpDnsLabel'))]"
 		},
