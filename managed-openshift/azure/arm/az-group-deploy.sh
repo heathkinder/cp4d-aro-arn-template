@@ -58,7 +58,6 @@ else
     fi
 fi
 
-echo "Using parameters file: "$parametersFile
 
 templateName="$( basename "${templateFile%.*}" )"
 templateDirectory="$( dirname "$templateFile")"
@@ -126,7 +125,7 @@ then
     do
         relFilePath=${filepath:$artifactsStagingDirectoryLen}
         echo "Uploading file $relFilePath..."
-        az storage blob upload -f $filepath --container $artifactsStorageContainerName -n $relFilePath --account-name "$artifactsStorageAccountName" --account-key "$artifactsStorageAccountKey" --verbose
+        az storage blob upload --overwrite -f $filepath --container $artifactsStorageContainerName -n $relFilePath --account-name "$artifactsStorageAccountName" --account-key "$artifactsStorageAccountKey" --verbose
     done
 
     templateUri=$blobEndpoint$artifactsStorageContainerName/$(basename $templateFile)?$sasToken
