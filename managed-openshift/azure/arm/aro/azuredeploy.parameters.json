@@ -31,6 +31,10 @@
 				"secretName": "pullSecret"
 			}
 		},
+                "resourceProviderId": {
+                        "value": "5e7d0890-b347-44f5-96f7-0b7ae125b5dd"
+
+                },
 		"storageOption": {
 			"value": "nfs"
 		},
