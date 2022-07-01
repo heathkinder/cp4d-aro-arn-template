@@ -73,8 +73,10 @@
 		},
 		"workerInstanceCount": {
 			"type": "int",
-			"defaultValue": 3,
+			"defaultValue": 1,
 			"allowedValues": [
+                                1,
+                                2,
 				3,
 				4,
 				5,
