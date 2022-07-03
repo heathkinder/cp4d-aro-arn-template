@@ -1083,10 +1083,10 @@
 						"value": "[variables('customDomain')]"
 					},
 					"subscriptionChannel": {
-						"value": "v2.0"
+						"value": "v3.0"
 					},
 					"version": {
-						"value": "4.0.5"
+						"value": "4.5.0"
 					}
 				}
 			}
