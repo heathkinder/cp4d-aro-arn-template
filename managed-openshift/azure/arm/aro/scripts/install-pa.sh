@@ -168,7 +168,7 @@ done
 
 runuser -l $SUDOUSER -c "oc project $CPDNAMESPACE; oc create -f $CPDTEMPLATES/ibm-pa-instance.yaml"
 
-# Check CR Status - PAService
+# Check CR Status - PAServiceInstance
 
 SERVICE="PAServiceInstance"
 CRNAME="planning-analytics-instance"
