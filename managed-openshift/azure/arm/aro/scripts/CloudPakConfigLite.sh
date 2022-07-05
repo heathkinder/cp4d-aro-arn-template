@@ -59,6 +59,13 @@ elif [[ $STORAGEOPTION == "ocs" ]];then
     export STORAGECLASS_RWO_VALUE="ocs-storagecluster-ceph-rbd"
 fi
 
+# Set url
+if [[ $CUSTOMDOMAIN == "true" || $CUSTOMDOMAIN == "True" ]];then
+export SUBURL="${CLUSTERNAME}.${DOMAINNAME}"
+else
+export SUBURL="${DOMAINNAME}.${LOCATION}.aroapp.io"
+fi
+
 ## Login - via OC
 var=1
 while [ $var -ne 0 ]; do
@@ -76,6 +83,7 @@ sudo cpd-cli manage login-to-ocp \
 --username=${OPENSHIFTUSER} \
 --password=${OPENSHIFTPASSWORD} \
 --insecure-skip-tls-verify=true 
+
 
 ## Update Pull Secret
 sudo cpd-cli manage add-icr-cred-to-global-pull-secret $APIKEY
