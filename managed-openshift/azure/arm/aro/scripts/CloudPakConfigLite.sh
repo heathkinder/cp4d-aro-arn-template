@@ -37,12 +37,12 @@ runuser -l $SUDOUSER -c "oc new-project $OPERATORNAMESPACE"
 runuser -l $SUDOUSER -c "wget -O cpd-cli.tar.gz 'https://github.com/IBM/cpd-cli/releases/download/v11.0.0/cpd-cli-linux-SE-11.0.0.tgz'"
 runuser -l $SUDOUSER -c "tar xvzf cpd-cli.tar.gz"
 runuser -l $SUDOUSER -c "rm -f cpd-cli.tar.gz"
-runuser -l $SUDOUSER -c "cp -r cpd-cli-linux-SE-11.0.0-20/. /usr/bin/"
+runuser -l $SUDOUSER -c "sudo cp -r cpd-cli-linux-SE-11.0.0-20/. /usr/bin/"
 runuser -l $SUDOUSER -c "sudo chmod +x /usr/bin/cpd-cli"
-# runuser -l $SUDOUSER -c export "PATH=$PWD/cpd-cli-linux-SE-11.0.0-20/:$PATH"
+# runuser -l $SUDOUSER -c "export PATH=$PWD/cpd-cli-linux-SE-11.0.0-20/:$PATH"
 
 ## Installing Podman or Docker - cpd-cli requires this a container engine as ansible playbooks are executed from a custom image
-runuser -l $SUDOUSER -c "yum -y install podman"
+runuser -l $SUDOUSER -c "sudo yum -y install podman"
 
 ## Installing jq
 runuser -l $SUDOUSER -c "wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O  $CPDTEMPLATES/jq"
