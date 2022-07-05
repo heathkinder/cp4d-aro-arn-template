@@ -39,7 +39,7 @@ done
 ## Login - via cpd-cli
 # Logging on via oc binary is not enough. This login below writes the kubeconfig to the pod's filesystem which is used by the ansible playbooks
 # TODO: Confirm if the cpd-cli login below implicitly performs an oc login
-cpd-cli manage login-to-ocp \
+sudo cpd-cli manage login-to-ocp \
 --server="https://api.${SUBURL}:6443" \
 --username=${OPENSHIFTUSER} \
 --password=${OPENSHIFTPASSWORD} \
@@ -47,13 +47,13 @@ cpd-cli manage login-to-ocp \
 
 
 ## Configure subscription and olm for PA
-cpd-cli manage apply-olm \
+sudo cpd-cli manage apply-olm \
 --release=${VERSION} \
 --cpd_operator_ns=${CPDNAMESPACE} \
 --components=planning_analytics
 
 ## Deploy PAService from exposed Operand - Note this deploys an instance of PAService but not the instance. So the Instance YAML must be created as per below.
-cpd-cli manage apply-cr \
+sudo cpd-cli manage apply-cr \
 --components=planning_analytics \
 --release=${VERSION} \
 --cpd_instance_ns=${CPDNAMESPACE} \
