@@ -243,7 +243,7 @@
 		},
 		"projectName": {
 			"type": "string",
-			"defaultValue": "zen",
+			"defaultValue": "chartertech",
 			"metadata": {
 				"description": "Openshift Namespace to deploy project"
 			}
@@ -279,6 +279,17 @@
 			],
 			"metadata": {
 				"description": "Install Watson Knowledge Catalog"
+			}
+		},
+		"installWatsonMachineLearningAccelerator": {
+			"type": "string",
+			"defaultValue": "no",
+			"allowedValues": [
+				"yes",
+				"no"
+			],
+			"metadata": {
+				"description": "Install Watson Machine Learning Accelerator"
 			}
 		},
 		"installDataVirtualization": {
@@ -1096,10 +1107,10 @@
 						"value": "[variables('customDomain')]"
 					},
 					"subscriptionChannel": {
-						"value": "v2.0"
+						"value": "v3.0"
 					},
 					"version": {
-						"value": "4.0.5"
+						"value": "4.5.0"
 					}
 				}
 			}
@@ -1745,10 +1756,10 @@
 						"value": "[variables('customDomain')]"
 					},
 					"subscriptionChannel": {
-						"value": "v4.0"
+						"value": "v3.0"
 					},
 					"version": {
-						"value": "4.0.9"
+						"value": "4.5.0"
 					}
 				}
 			}
