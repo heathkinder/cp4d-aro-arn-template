@@ -53,7 +53,7 @@
 		},
 		"bastionVmSize": {
 			"type": "string",
-			"defaultValue": "Standard_D8s_v3",
+			"defaultValue": "Standard_D16s_v3",
 			"metadata": {
 				"description": "Bastion Host VM size. Use VMs with Premium Storage support only."
 			}
