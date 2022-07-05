@@ -75,7 +75,7 @@ cpd-cli manage login-to-ocp \
 --server="https://api.${SUBURL}:6443" \
 --username=${OPENSHIFTUSER} \
 --password=${OPENSHIFTPASSWORD} \
---insecure-skip-tls-verify=false 
+--insecure-skip-tls-verify=true 
 
 ## Update Pull Secret
 cpd-cli manage add-icr-cred-to-global-pull-secret $APIKEY
