@@ -43,7 +43,7 @@ cpd-cli manage login-to-ocp \
 --server="https://api.${SUBURL}:6443" \
 --username=${OPENSHIFTUSER} \
 --password=${OPENSHIFTPASSWORD} \
---insecure-skip-tls-verify=false 
+--insecure-skip-tls-verify=true 
 
 
 ## Configure subscription and olm for PA
