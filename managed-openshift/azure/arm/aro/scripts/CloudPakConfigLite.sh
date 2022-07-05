@@ -34,7 +34,7 @@ runuser -l $SUDOUSER -c "oc new-project $CPDNAMESPACE"
 runuser -l $SUDOUSER -c "oc new-project $OPERATORNAMESPACE"
 
 ## Installing cpd-cli - Right now, the links and name of files are hardcoded. Would be good to use the variables CPDCLI/CPDCLIEDITION to construct those
-runuser -l $SUDOUSER -c "wget -O cpd-cli.tar.gz 'https://github.com/IBM/cpd-cli/releases/download/v11.0.0/cpd-cli-linux-SE-11.0.0.tgz"
+runuser -l $SUDOUSER -c "wget -O cpd-cli.tar.gz 'https://github.com/IBM/cpd-cli/releases/download/v11.0.0/cpd-cli-linux-SE-11.0.0.tgz'"
 runuser -l $SUDOUSER -c "tar xvzf cpd-cli.tar.gz"
 runuser -l $SUDOUSER -c "rm -f cpd-cli.tar.gz"
 runuser -l $SUDOUSER -c "cp -r cpd-cli-linux-SE-11.0.0-20/. /usr/bin/"
