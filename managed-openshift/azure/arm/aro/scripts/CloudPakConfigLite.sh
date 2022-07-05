@@ -75,6 +75,8 @@ var=$?
 echo "exit code: $var"
 done
 
+echo "ocp login"
+
 ## Login - via cpd-cli
 # Logging on via oc binary is not enough. This login below writes the kubeconfig to the pod's filesystem which is used by the ansible playbooks
 # TODO: Confirm if the cpd-cli login below implicitly performs an oc login
@@ -84,19 +86,27 @@ sudo cpd-cli manage login-to-ocp \
 --password=${OPENSHIFTPASSWORD} \
 --insecure-skip-tls-verify=true 
 
+echo "cpd-cli login"
+
 
 ## Update Pull Secret
 sudo cpd-cli manage add-icr-cred-to-global-pull-secret $APIKEY
+
+echo "Secret updated"
 
 ## OLM Creation - TODO: Put some conditionals on whether or not Scheduler is required based on Watson Machine Learning Accelerator
 sudo cpd-cli manage apply-olm \
 --release=${VERSION} \
 --components=cpfs,cpd_platform
 
+echo "Applied OLM"
+
 oc patch NamespaceScope common-service \
 -n ${OPERATORNAMESPACE} \
 --type=merge \
 --patch='{"spec": {"csvInjector": {"enable": true} } }'
+
+echo "Applied patch"
 
 ## Storage Configuration - this is dependant upon the storage mechanism chosen
 sudo cpd-cli manage apply-cr \
@@ -106,5 +116,7 @@ sudo cpd-cli manage apply-cr \
 --block_storage_class=${STORAGECLASS_VALUE} \
 --file_storage_class=${STORAGECLASS_VALUE} \
 --license_acceptance=true
+
+echo "Applied CR"
 
 echo "$(date) - ############### Script Complete #############"
