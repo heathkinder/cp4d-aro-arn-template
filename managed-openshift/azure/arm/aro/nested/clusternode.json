@@ -128,7 +128,7 @@
 						},
 						"caching": "ReadWrite",
 						"createOption": "FromImage",
-						"diskSizeGB": 256,
+						"diskSizeGB": 512,
 						"osType": "Linux"
 					},
 					"dataDisks": "[if(equals(parameters('hostName'), 'bastionNode'), json('null'), variables('dataDisks'))]"
