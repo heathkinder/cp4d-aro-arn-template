@@ -59,6 +59,13 @@ elif [[ $STORAGEOPTION == "ocs" ]];then
     export STORAGECLASS_RWO_VALUE="ocs-storagecluster-ceph-rbd"
 fi
 
+# Set url
+if [[ $CUSTOMDOMAIN == "true" || $CUSTOMDOMAIN == "True" ]];then
+export SUBURL="${CLUSTERNAME}.${DOMAINNAME}"
+else
+export SUBURL="${DOMAINNAME}.${LOCATION}.aroapp.io"
+fi
+
 ## Login - via OC
 var=1
 while [ $var -ne 0 ]; do
