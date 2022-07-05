@@ -66,6 +66,7 @@ else
 export SUBURL="${DOMAINNAME}.${LOCATION}.aroapp.io"
 fi
 
+
 ## Login - via OC
 var=1
 while [ $var -ne 0 ]; do
