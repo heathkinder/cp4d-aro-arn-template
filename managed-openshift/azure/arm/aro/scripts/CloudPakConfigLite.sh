@@ -66,6 +66,7 @@ else
 export SUBURL="${DOMAINNAME}.${LOCATION}.aroapp.io"
 fi
 
+
 ## Login - via OC
 var=1
 while [ $var -ne 0 ]; do
@@ -75,7 +76,7 @@ var=$?
 echo "exit code: $var"
 done
 
-echo "ocp login"
+
 
 ## Login - via cpd-cli
 # Logging on via oc binary is not enough. This login below writes the kubeconfig to the pod's filesystem which is used by the ansible playbooks
@@ -86,13 +87,10 @@ sudo cpd-cli manage login-to-ocp \
 --password=${OPENSHIFTPASSWORD} \
 --insecure-skip-tls-verify=true 
 
-echo "cpd-cli login"
-
 
 ## Update Pull Secret
 sudo cpd-cli manage add-icr-cred-to-global-pull-secret $APIKEY
 
-echo "Secret updated"
 
 ## OLM Creation - TODO: Put some conditionals on whether or not Scheduler is required based on Watson Machine Learning Accelerator
 sudo cpd-cli manage apply-olm \
@@ -101,7 +99,7 @@ sudo cpd-cli manage apply-olm \
 
 echo "Applied OLM"
 
-oc patch NamespaceScope common-service \
+sudo oc patch NamespaceScope common-service \
 -n ${OPERATORNAMESPACE} \
 --type=merge \
 --patch='{"spec": {"csvInjector": {"enable": true} } }'
