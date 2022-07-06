@@ -76,7 +76,7 @@ var=$?
 echo "exit code: $var"
 done
 
-echo "Logged in via oc"
+
 
 ## Login - via cpd-cli
 # Logging on via oc binary is not enough. This login below writes the kubeconfig to the pod's filesystem which is used by the ansible playbooks
@@ -85,14 +85,11 @@ sudo cpd-cli manage login-to-ocp \
 --server="https://api.${SUBURL}:6443" \
 --username=${OPENSHIFTUSER} \
 --password=${OPENSHIFTPASSWORD} \
---insecure-skip-tls-verify=true
+--insecure-skip-tls-verify=true 
 
-echo "Logged in via cpd-cli"
 
 ## Update Pull Secret
 sudo cpd-cli manage add-icr-cred-to-global-pull-secret $APIKEY
-
-echo "Updated pull secret"
 
 
 ## OLM Creation - TODO: Put some conditionals on whether or not Scheduler is required based on Watson Machine Learning Accelerator
@@ -101,7 +98,6 @@ sudo cpd-cli manage apply-olm \
 --components=cpfs,cpd_platform
 
 echo "Applied OLM"
-
 
 sudo oc patch NamespaceScope common-service \
 -n ${OPERATORNAMESPACE} \

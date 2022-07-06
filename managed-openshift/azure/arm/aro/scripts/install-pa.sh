@@ -44,7 +44,6 @@ var=$?
 echo "exit code: $var"
 done
 
-echo "Login via ocp"
 
 ## Login - via cpd-cli
 # Logging on via oc binary is not enough. This login below writes the kubeconfig to the pod's filesystem which is used by the ansible playbooks
@@ -55,7 +54,6 @@ sudo cpd-cli manage login-to-ocp \
 --password=${OPENSHIFTPASSWORD} \
 --insecure-skip-tls-verify=true 
 
-echo "Log in via cpd-cli"
 
 
 ## Configure subscription and olm for PA
@@ -64,7 +62,6 @@ sudo cpd-cli manage apply-olm \
 --cpd_operator_ns=${CPDNAMESPACE} \
 --components=planning_analytics
 
-echo "Apply OLM for PA"
 
 ## Deploy PAService from exposed Operand - Note this deploys an instance of PAService but not the instance. So the Instance YAML must be created as per below.
 sudo cpd-cli manage apply-cr \
