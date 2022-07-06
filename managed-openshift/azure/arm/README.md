@@ -62,7 +62,14 @@ The Service Principal can be created by running the azure CLI commands from any 
 
 3. [Sign up](https://www.ibm.com/account/reg/us-en/signup?formid=urx-42212) for Cloud Pak for Data Trial Key if you don't have the entitlement api key
 
-4. Read and agree to the [license terms](https://ibm.biz/BdqyB2)
+4. Create a RedHat OpenShift Resource Provider. The second command below will output the objectID for the resource provider required as part of the installation.
+
+```bash
+az provider register -n Microsoft.RedHatOpenShift --wait
+az ad sp list --filter "displayname eq 'Azure Red Hat OpenShift RP'" --query "[?appDisplayName=='Azure Red Hat OpenShift RP'].{name: appDisplayName, objectId: id}"
+```
+
+5. Read and agree to the [license terms](https://ibm.biz/BdqyB2)
 
 ### Deploy
 
