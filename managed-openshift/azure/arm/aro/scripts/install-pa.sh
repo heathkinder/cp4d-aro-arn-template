@@ -70,7 +70,6 @@ sudo cpd-cli manage apply-cr \
 --cpd_instance_ns=${CPDNAMESPACE} \
 --license_acceptance=true
 
-echo "Applied CR for PA"
 
 # TODO: Uncomment and test the below at a later date
 

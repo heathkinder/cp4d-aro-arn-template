@@ -97,14 +97,12 @@ sudo cpd-cli manage apply-olm \
 --release=${VERSION} \
 --components=cpfs,cpd_platform
 
-echo "Applied OLM"
 
 sudo oc patch NamespaceScope common-service \
 -n ${OPERATORNAMESPACE} \
 --type=merge \
 --patch='{"spec": {"csvInjector": {"enable": true} } }'
 
-echo "Applied patch"
 
 ## Storage Configuration - this is dependant upon the storage mechanism chosen
 sudo cpd-cli manage apply-cr \
@@ -115,6 +113,5 @@ sudo cpd-cli manage apply-cr \
 --file_storage_class=${STORAGECLASS_VALUE} \
 --license_acceptance=true
 
-echo "Applied CR"
 
 echo "$(date) - ############### Script Complete #############"
