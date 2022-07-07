@@ -303,7 +303,7 @@
 				"description": "Install Data Virtualization"
 			}
 		},
-		"installCognosDashboard": {
+		"installCognosAnalytics": {
 			"type": "string",
 			"defaultValue": "no",
 			"allowedValues": [
@@ -400,20 +400,16 @@
 		"installWosScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-wos.sh', parameters('_artifactsLocationSasToken')))]",
 		"installWslScriptFileName": "install-wsl.sh",
 		"installWslScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-wsl.sh', parameters('_artifactsLocationSasToken')))]",
-		"installCCSScriptFileName": "install-ccs.sh",
-		"installCCSScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-ccs.sh', parameters('_artifactsLocationSasToken')))]",
 		"installWmlScriptFileName": "install-wml.sh",
 		"installWmlScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-wml.sh', parameters('_artifactsLocationSasToken')))]",
 		"installSparkScriptFileName": "install-spark.sh",
 		"installSparkScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-spark.sh', parameters('_artifactsLocationSasToken')))]",
 		"installDataRefineryScriptFileName": "install-dr.sh",
 		"installDataRefineryScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-dr.sh', parameters('_artifactsLocationSasToken')))]",
-		"installCdeScriptFileName": "install-cde.sh",
-		"installCdeScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-cde.sh', parameters('_artifactsLocationSasToken')))]",
+		"installCAScriptFileName": "install-ca.sh",
+		"installCAScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-ca.sh', parameters('_artifactsLocationSasToken')))]",
 		"installWkcScriptFileName": "install-wkc.sh",
 		"installWkcScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-wkc.sh', parameters('_artifactsLocationSasToken')))]",
-		"installDVScriptFileName": "install-dv.sh",
-		"installDVScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-dv.sh', parameters('_artifactsLocationSasToken')))]",
 		"installPAScriptFileName": "install-pa.sh",
 		"InstallPAScriptUrl": "[uri(parameters('_artifactsLocation'), concat('scripts/install-pa.sh', parameters('_artifactsLocationSasToken')))]",
 		"deployOpenshiftExt": "[concat('Microsoft.Compute/virtualMachines/', variables('bastionHostname'), '/extensions/deployOpenshift')]",
@@ -1116,78 +1112,6 @@
 			}
 		},
 		{
-			"condition": "[and(equals(parameters('cloudPakLicenseAgreement'), 'accept'), or(equals(parameters('installWatsonStudioLocal'), 'yes'),equals(parameters('installWatsonKnowledgeCatalog'), 'yes'),equals(parameters('installWatsonMachineLearning'), 'yes'),equals(parameters('installDataVirtualization'), 'yes'),equals(parameters('installCognosDashboard'), 'yes')))]",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2019-05-01",
-			"name": "CloudPakCCSDeployment",
-			"dependsOn": [
-				"[resourceId('Microsoft.RedHatOpenShift/OpenShiftClusters', parameters('clusterName'))]",
-				"CloudPakLiteDeployment",
-				"OCSDeployment",
-				"NFSDeployment"
-			],
-			"properties": {
-				"mode": "Incremental",
-				"templateLink": {
-					"uri": "[variables('cloudPakDeploymentTemplateUrl')]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"cloudPakDeploymentScriptUrl": {
-						"value": "[variables('installCCSScriptUrl')]"
-					},
-					"cloudPakDeploymentScriptFileName": {
-						"value": "[variables('installCCSScriptFileName')]"
-					},
-					"redHatTags": {
-						"value": "[variables('redHatTags')]"
-					},
-					"adminUsername":{
-						"value": "[parameters('adminUsername')]"
-					},
-					"storageOption": {
-						"value": "[parameters('storageOption')]"
-					},
-					"bastionHostname": {
-						"value": "[variables('bastionHostname')]"
-					},
-					"projectName": {
-						"value": "[parameters('projectName')]"
-					},
-					"location": {
-						"value": "[parameters('location')]"
-					},
-					"clusterName": {
-						"value": "[parameters('clusterName')]"
-					},
-					"domainName": {
-						"value": "[variables('domain')]"
-					},
-					"workerInstanceCount": {
-						"value": "[parameters('workerInstanceCount')]"
-					},
-					"apiKey": {
-						"value": "[parameters('apiKey')]"
-					},
-					"ocuser": {
-						"value": "[listCredentials(resourceId('Microsoft.RedHatOpenShift/OpenShiftClusters', parameters('clusterName')), '2020-04-30').kubeadminUsername]"
-					},
-					"ocpassword": {
-						"value": "[listCredentials(resourceId('Microsoft.RedHatOpenShift/OpenShiftClusters', parameters('clusterName')), '2020-04-30').kubeadminPassword]"
-					},
-					"customDomain": {
-						"value": "[variables('customDomain')]"
-					},
-					"subscriptionChannel": {
-						"value": "v1.0"
-					},
-					"version": {
-						"value": "4.0.5"
-					}
-				}
-			}
-		},
-		{
 			"condition": "[and(equals(parameters('cloudPakLicenseAgreement'), 'accept'),equals(parameters('installWatsonKnowledgeCatalog'), 'yes'))]",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2019-05-01",
@@ -1476,7 +1400,7 @@
 			}
 		},
 		{
-			"condition": "[and(equals(parameters('cloudPakLicenseAgreement'), 'accept'), equals(parameters('installCognosDashboard'), 'yes'))]",
+			"condition": "[and(equals(parameters('cloudPakLicenseAgreement'), 'accept'), equals(parameters('installCognosAnalytics'), 'yes'))]",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2019-05-01",
 			"name": "CloudPakCDEDeployment",
@@ -1495,10 +1419,10 @@
 				},
 				"parameters": {
 					"cloudPakDeploymentScriptUrl": {
-						"value": "[variables('installCdeScriptUrl')]"
+						"value": "[variables('installCAScriptUrl')]"
 					},
 					"cloudPakDeploymentScriptFileName": {
-						"value": "[variables('installCdeScriptFileName')]"
+						"value": "[variables('installCAScriptFileName')]"
 					},
 					"redHatTags": {
 						"value": "[variables('redHatTags')]"
@@ -1544,78 +1468,6 @@
 					},
 					"version": {
 						"value": "4.0.5"
-					}
-				}
-			}
-		},
-		{
-			"condition": "[and(equals(parameters('cloudPakLicenseAgreement'), 'accept'), equals(parameters('installCognosDashboard'), 'yes'))]",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2019-05-01",
-			"name": "CloudPakDVDeployment",
-			"dependsOn": [
-				"[resourceId('Microsoft.RedHatOpenShift/OpenShiftClusters', parameters('clusterName'))]",
-				"CloudPakCDEDeployment",
-				"OCSDeployment",
-				"NFSDeployment"
-			],
-			"properties": {
-				"mode": "Incremental",
-				"templateLink": {
-					"uri": "[variables('cloudPakDeploymentTemplateUrl')]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"cloudPakDeploymentScriptUrl": {
-						"value": "[variables('installDVScriptUrl')]"
-					},
-					"cloudPakDeploymentScriptFileName": {
-						"value": "[variables('installDVScriptFileName')]"
-					},
-					"redHatTags": {
-						"value": "[variables('redHatTags')]"
-					},
-					"adminUsername":{
-						"value": "[parameters('adminUsername')]"
-					},
-					"storageOption": {
-						"value": "[parameters('storageOption')]"
-					},
-					"bastionHostname": {
-						"value": "[variables('bastionHostname')]"
-					},
-					"projectName": {
-						"value": "[parameters('projectName')]"
-					},
-					"location": {
-						"value": "[parameters('location')]"
-					},
-					"clusterName": {
-						"value": "[parameters('clusterName')]"
-					},
-					"domainName": {
-						"value": "[variables('domain')]"
-					},
-					"workerInstanceCount": {
-						"value": "[parameters('workerInstanceCount')]"
-					},
-					"apiKey": {
-						"value": "[parameters('apiKey')]"
-					},
-					"ocuser": {
-						"value": "[listCredentials(resourceId('Microsoft.RedHatOpenShift/OpenShiftClusters', parameters('clusterName')), '2020-04-30').kubeadminUsername]"
-					},
-					"ocpassword": {
-						"value": "[listCredentials(resourceId('Microsoft.RedHatOpenShift/OpenShiftClusters', parameters('clusterName')), '2020-04-30').kubeadminPassword]"
-					},
-					"customDomain": {
-						"value": "[variables('customDomain')]"
-					},
-					"subscriptionChannel": {
-						"value": "v1.7"
-					},
-					"version": {
-						"value": "1.7.5"
 					}
 				}
 			}
